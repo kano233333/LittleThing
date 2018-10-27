@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>音乐播放器</title>
+    <link rel="stylesheet" type="text/css" href="music.css">
+</head>
+<body>
+
+<textarea id="text" style="display: none;">
+    [00:02.54]哑巴
+    [00:04.06]
+    [00:06.02]原词曲：汪苏泷
+    [00:07.57]新版作词：薛之谦,汪苏泷
+    [00:08.89]新版作曲：薛之谦,汪苏泷
+    [00:10.11]制作人：郑伟
+    [00:11.19]编曲：郑伟
+    [00:12.69]原唱：刘维
+    [00:13.85]演唱：薛之谦
+    [00:15.11]吉他：王山
+    [00:16.20]合音：薛之谦
+    [00:17.65]混音：郑伟
+    [00:18.93]人声录制：莫家伟（上海广播大厦200Studio）
+    [00:20.15]母带制作：全相彦（OK Master Studio）
+    [00:21.69]
+    [00:29.75]我们都迁就嘴巴
+    [00:34.51]我们都憋着真话
+    [00:38.69]我们都让爱先发芽
+    [00:47.69]我们会接受惩罚
+    [00:52.16]有一个变成哑巴
+    [00:57.25]越退让越不会表达
+    [01:04.44]所有的安静都是人造的冷清
+    [01:09.65]所有的杂音在安慰后平静
+    [01:14.71]我不需要证明
+    [01:18.95]我不需要声音
+    [01:23.79]
+    [01:28.31]我就像一个哑巴一样
+    [01:33.82]你翻译不了我的声响
+    [01:40.54]怕腻烦过量
+    [01:42.77]我举止要限量
+    [01:48.95]你可以当我哑巴一样
+    [01:55.02]你不会看见我的抵抗
+    [02:04.59]请别怕我受伤 我自己会圆场
+    [02:16.19]
+    [02:36.60]我们会接受惩罚
+    [02:40.43]有一个变成哑巴
+    [02:44.53]越退让越不会表达
+    [02:51.97]所有的安静都是人造的冷清
+    [02:56.53]所有的杂音在安慰后平静
+    [03:00.50]我不需要证明
+    [03:04.79]我不需要声音
+    [03:08.63]我就像一个哑巴一样
+    [03:12.72]你翻译不了我的声响
+    [03:17.72]怕腻烦过量
+    [03:20.09]我举止要限量
+    [03:25.52]你可以当我哑巴一样
+    [03:29.61]你不会看见我的抵抗
+    [03:34.63]请别怕我受伤 我自己会圆场
+    [03:45.22]
+    [03:49.68]我就像一个哑巴一样
+    [03:56.85]反正我也不擅长抵抗
+    [04:07.75]
+</textarea>
+
+
+
+
+<div id="tou">
+    <div class="title">
+        <p>哑巴</p>
+    </div>
+    <div class="singer">
+        <p>薛之谦</p>
+    </div>
+    <div class="play" id="play"></div>
+    <div class="lrc">
+        <div id="content"></div>
+    </div>
+</div>
+<audio src="薛之谦%20-%20哑巴.mp3" id="myMusic"></audio>
+
+<script>
+    //获取元素
+    var oPlay=document.getElementById("play");
+    var myPlay=document.getElementById("myMusic");
+
+    //实现播放功能
+    var onOff=true;  //播放按钮
+    oPlay.onclick=function(){  //点击实现
+        if(onOff) {
+            myPlay.play(); //播放
+            onOff=false;
+            this.className="play rotate";   //通过改变className实现旋转 .rotate旋转属性
+        }else{
+            myPlay.pause();  //暂停
+            onOff=true;
+            this.className="play";
+        }
+    }
+
+    //歌词同步
+    //1.获取歌词，添加到歌词div
+    var html=''; //空字符串用于存储歌词文档
+    var text=document.getElementById('text').value;
+    var oCon=document.getElementById('content');
+    var arr=text.split("[");
+    var times;
+    for(let i=0;i<arr.length;i++){
+       //console.log(arr[i]);
+       var lrc=arr[i].split(']');
+       if(lrc[1]){
+           times=lrc[0].split('.');
+           //console.log(times[0]);
+
+           var time;
+           time=times[0].split(":");
+           //console.log(time)
+
+           var cut=time[0]*60+time[1]*1;
+           //console.log(cut);
+
+           html+="<p id="+cut+">"+lrc[1]+"</p>";
+           //console.log(html);
+       }
+
+    }
+    oCon.innerHTML=html;
+    var aP=oCon.getElementsByTagName("p");
+    var x=0;
+    //2.歌词同步
+    //2.1 监听歌曲播放进度
+    myPlay.addEventListener("timeupdate",function(){
+        console.log(parseInt(this.currentTime));  //输出音乐当前时间
+        var curt=parseInt(this.currentTime);
+        if(document.getElementById(curt)){
+            //把原来的全部变回去，再变当前的
+            for(let i=0;i<aP.length;i++){
+                aP[i].style.color="#ccc";
+                aP[i].style.fontSize="12px";
+                aP[i].style.fontWeight="normal";
+
+
+            }
+            document.getElementById(curt).style.color="#333537";
+            document.getElementById(curt).style.fontWeight="bold";
+            document.getElementById(curt).style.fontSize="16px";
+
+            // if(parseInt(this.currentTime)>11){
+            //     oCon.style.position="relative";
+            //     x-=20;
+            //     console.log(x);
+            //     oCon.style.top=x+"px";
+            // }
+
+            if(aP[x+8]&&aP[x+8].id==curt){
+                oCon.style.top=-20*x+"px";
+                x++;
+            }
+
+        }
+
+
+    });
+
+    //监听歌曲播放完成
+    myPlay.addEventListener('ended',function(){
+       oCon.style.top=0;
+       this.currentTime=0;
+       oPlay.className="play";
+       onOff=true;
+    });
+</script>
+
+</body>
+</html>

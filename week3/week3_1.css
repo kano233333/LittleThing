@@ -1,0 +1,130 @@
+*{margin: 0;padding:0;}
+a{text-decoration: none;}
+li{list-style: none;}
+
+body{
+    width: 100%;
+    height:500px;
+    background-image:url("back1.jpeg");
+}
+.header{
+    width:100%;
+    height:100px;
+    /*background-image:url("back2.jpeg");*/
+    background-size:100% 400%;
+    border-bottom:1px solid #fffdf4;
+}
+.header h1{
+    text-align:center;
+    color:#fff;
+    font-size: 50px;
+    padding-top:20px;
+    font-family: min-width;
+}
+.caidan{
+    width: 100%;
+    height:30px;
+}
+
+.caidan1{
+    /*margin-left:15%;*/
+    display: -webkit-flex;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}
+.caidan1 li{
+    float:left;
+    height:30px;
+    padding:0 45px 0 45px;
+    text-align: center;
+    line-height: 26px;
+    font-size:18px;
+    border:1px solid #92bced;
+}
+.caidan1 li a{
+    color: #c0c2f9;
+}
+.caidan li a:hover{
+    color: #e7eef9;
+    font-weight: bold;
+}
+
+.content{
+    width: 100%;
+    height:700px;
+}
+.con_left{
+    width:17%;
+    height:100%;
+    float:left;
+}
+.left_p{
+    margin-left:10%;
+}
+.left_p p{
+    line-height: 40px;
+}
+.left_p a{
+    color: #b4b4b4;
+}
+.left_p a:hover{
+    color: #f7f7f7;
+    font-weight: bold;
+}
+.con_center{
+    width:66%;
+    height:100%;
+    float:left;
+}
+.con_rigth{
+    width:17%;
+    height:100%;
+    float:right;
+}
+.content1{
+    margin-top: 2%;
+    height:40%;
+    background-color: #e7eef9;
+    border: 1px solid #e2e2e2;
+    border-radius: 20px;
+    opacity: 0.7;
+    box-shadow: 3px 3px 10px #fff;
+}
+.content2{
+    margin-top: 2%;
+    height:50%;
+    background-color: #e7eef9;
+    border: 1px solid #e2e2e2;
+    border-radius: 20px;
+    opacity: 0.7;
+    box-shadow: 3px 3px 10px #fff;
+}
+.con_header{
+    margin-top:1%;
+    margin-left:2%;
+    font-size: 20px;
+    width: 90%;
+    height:20px;
+    color: #333537;
+}
+.content1 p{
+    line-height: 30px;
+    padding-top:0.5%;
+    padding-left:3%;
+}
+.content2 p{
+    line-height: 30px;
+    padding-top:0.5%;
+    padding-left:3%;
+}
+
+.footer{
+    width: 100%;
+    height:40px;
+    border-top:1px solid cornsilk;
+}
+.footer p{
+    text-align: center;
+    color: #fff;
+    margin-top: 1%;
+}

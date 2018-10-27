@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6.1</title>
+    <link rel="stylesheet" type="text/css" href="6.1.css">
+</head>
+<body>
+<div id="main">
+<div id="nav">
+    <div class="center">
+        <div class="loge">
+            <div class="tu">
+                <img src="img/nav_loge.jpg">
+            </div>
+            <div class="zi">
+            <span>BLUEBOX</span>
+            </div>
+        </div>
+        <div class="column">
+            <ul>
+                <li><a href="#">About</a></li>
+                <li>|</li>
+                <li><a href="#">Services</a></li>
+                <li>|</li>
+                <li><a href="#">Works</a></li>
+                <li>|</li>
+                <li><a href="#">Blog</a></li>
+                <li>|</li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="search">
+            <input class="text" type="text" value="Search">
+            <input class="submit" type="submit" value="">
+        </div>
+    </div>
+</div>
+<div id="header">
+    <div class="h_left">
+        <img src="img/h_left.png">
+    </div>
+    <div class="h_center">
+        <div class="h_zi">
+            <span>We are a Creative Digital Agency</span>
+            <input type="submit" value="Learn More">
+        </div>
+        <div class="h_tu">
+            <img src="img/header.png">
+        </div>
+    </div>
+    <div class="h_right">
+        <img src="img/h_right.png">
+    </div>
+</div>
+<div id="content">
+    <div class="san">
+        <div class="center">
+            <div class="san1">
+                <p>Web Design</p>
+                <div class="san1_img"></div>
+                <div class="san_zi">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                    rhoncus, lacus ac commodo volutpat, felis odio pulvinar enim, non
+                    dapibus mauris nulla sed ipsum.
+                    </p>
+                </div>
+                <div class="san_more">
+                    <a href="#">READ MORE</a>
+                </div>
+            </div>
+            <div class="san2">
+                <p>Social Media</p>
+                <div class="san2_img"></div>
+                <div class="san_zi">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                        rhoncus, lacus ac commodo volutpat, felis odio pulvinar enim, non
+                        dapibus mauris nulla sed ipsum.
+                    </p>
+                </div>
+                <div class="san_more">
+                    <a href="#">READ MORE</a>
+                </div>
+            </div>
+            <div class="san3">
+                <p>Mobile Apps</p>
+                <div class="san3_img"></div>
+                <div class="san_zi">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                        rhoncus, lacus ac commodo volutpat, felis odio pulvinar enim, non
+                        dapibus mauris nulla sed ipsum.
+                    </p>
+                </div>
+                <div class="san_more">
+                    <a href="#">READ MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="work">
+        <div class="center">
+            <div class="work_main">
+                <p>Our Works</p>
+                <div class="work_tu">
+                    <a href="#" id="view" onmouseover="document.getElementById('view').style.display='block';document.getElementById('link').style.display='block';">
+                        <img src="img/view.png">
+                    </a>
+                    <a href="#" id="link" onmouseover="document.getElementById('link').style.display='block';document.getElementById('view').style.display='block';">
+                        <img src="img/link.png">
+                    </a>
+
+                    <a href="#" class="work_img" onmouseover="chu(0)" onmouseout="hui()"><img src="img/work1.png"></a>
+                    <a href="#" class="work_img" onmouseover="chu(1)" onmouseout="hui()"><img src="img/work2.png"></a>
+                    <a href="#" class="work_img" onmouseover="chu(2)" onmouseout="hui()"><img src="img/work3.png"></a>
+                    <a href="#" class="work_img" onmouseover="chu(3)" onmouseout="hui()"><img src="img/work4.png"></a>
+                    <a href="#" class="work_img" onmouseover="chu(4)" onmouseout="hui()"><img src="img/work5.png"></a>
+                    <a href="#" class="work_img" onmouseover="chu(5)" onmouseout="hui()"><img src="img/work6.png"></a>
+                    <a href="#" class="work_img" onmouseover="chu(6)" onmouseout="hui()"><img src="img/work7.png"></a>
+                    <a href="#" class="work_img" onmouseover="chu(7)" onmouseout="hui()"><img src="img/work8.png"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="client">
+        <div class="center">
+            <div class="client_main">
+                <p>Clients</p>
+                <div class="client_tu">
+                    <div class="client_left">
+                    <img src="img/client_left.png">
+                    </div>
+                    <div class="client_center">
+                        <a href="#"><img src="img/client1.png"></a>
+                        <a href="#"><img src="img/client2.png"></a>
+                        <a href="#"><img src="img/client3.png"></a>
+                        <a href="#"><img src="img/client4.png"></a>
+                    </div>
+                    <div class="client_right">
+                    <img src="img/client_right.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="center">
+        <div class="footer_left">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li class="footer_li">|</li>
+                <li ><a href="#">About</a></li>
+                <li class="footer_li">|</li>
+                <li><a href="#">Services</a></li>
+                <li class="footer_li">|</li>
+                <li><a href="#">Work</a></li>
+                <li class="footer_li">|</li>
+                <li><a href="#">Blog</a></li>
+                <li class="footer_li">|</li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <br/>
+            <p class="p2">© 2013 BlueBox.  All Rights Reserved.</p>
+            <p class="p3">The logos used in the design are the property of their respective owners / copyright holders.</p>
+        </div>
+        <div class="footer_right">
+            <a href="#"><img src="img/footer1.png"></a>
+            <a href="#"><img src="img/footer2.png"></a>
+            <a href="#"><img src="img/footer3.png"></a>
+            <a href="#"><img src="img/footer4.png"></a>
+            <a href="#"><img src="img/footer5.png"></a>
+            <a href="#"><img src="img/footer6.png"></a>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    var img=document.getElementsByClassName("work_img");
+    var view=document.getElementById("view");
+    var link=document.getElementById("link");
+
+        function chu(i) {
+            var top = 219;
+            var left1 = 14.2;
+            var left2 =27;
+            view.style.display = "block";
+            if(i<4){
+                view.style.top = top + "%";
+                view.style.left = left1 + (i * 17.85) + "%";
+                link.style.display = "block";
+                link.style.top =top + (i > 3) * 30 + "%";
+                link.style.left =left2 + (i*17.8)+"%";
+            }else{
+                view.style.top = top + 30 + "%";
+                view.style.left = left1 + ((i-4) * 17.85) + "%";
+                link.style.display = "block";
+                link.style.top =top + 30 + "%";
+                link.style.left =left2 + ((i-4)*17.8) +"%";
+            }
+        }
+
+        function hui(){
+            view.style.display = "none";
+            link.style.display = "none";
+        }
+
+
+</script>
+</body>
+</html>

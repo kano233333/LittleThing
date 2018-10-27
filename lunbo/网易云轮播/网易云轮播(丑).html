@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网易云轮播</title>
+	<style>
+		*{padding:0;margin:0;}
+		li{list-style:none;}
+		
+		.carousel{
+			width: 1200px;
+			height: 367px;
+			margin:50px;
+		}
+		.imgBox{
+			width: 1200px;
+			height: 336px;
+			overflow: hidden;
+			position: relative;
+		}
+		/* .lineBar{
+			width: 1200px;
+			height: 31px;
+		} */
+
+		.imgBox ul li{
+			width: 730px;
+			height: 336px;
+			position: absolute;
+			top: 70px;
+		}
+		.imgBox ul li img{
+			width: 100%;
+			height: 80%;
+		}
+		.list1{
+			transform: translateX(0);
+			z-index: 1;
+		}
+		.list2{
+			transform: translateX(235px);
+			z-index: 3;
+		}
+		.list3{
+			transform: translateX(940px);
+			z-index: 2;
+		}
+		.list4{
+			transform: translateX(940px);
+		}
+		.list5{
+			transform: translateX(940px);
+		}
+		.list6{
+			transform: translateX(940px);
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel">
+		<div class="imgBox">
+			<ul>
+				<li class="list1"><img src="1.jpg" alt=""></li>
+				<li class="list2"><img src="2.jpg" alt=""></li>
+				<li class="list3"><img src="3.jpeg" alt=""></li>
+				<li class="list4"><img src="4.jpeg" alt=""></li>
+				<li class="list5"><img src="5.jpeg" alt=""></li>
+				<li class="list6"><img src="6.jpeg" alt=""></li>
+			</ul>
+		</div>
+
+
+		<!-- <div class="linBar">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div> -->
+	</div>
+
+	<script>
+		var img=document.getElementsByClassName('imgBox')[0].getElementsByTagName('li');
+		var images=document.getElementsByClassName('imgBox')[0].getElementsByTagName('img');
+		var timer;
+		var i=1;
+		img[1].style.top = '0';
+		images[1].style.height="100%";
+		function play(){
+			timer=setInterval(self,2000);
+		}
+
+		function self(){
+			for(let n=0;n<img.length;n++){
+					img[n].style.transform="translateX(940px)";
+					img[n].style.zIndex = '0';
+					img[n].style.top = '70px';
+					images[n].style.height="80%";
+			}
+			if(i==0){
+				img[i+1].style.transform="translateX(940px)";
+				img[i+1].style.zIndex='1';
+				img[img.length-1].style.transform="translateX(0)";
+				img[img.length-1].style.zIndex='2';
+			}else if(i==img.length-1){
+				img[0].style.transform="translateX(940px)";
+				img[0].style.zIndex='2';
+				img[i-1].style.transform="translateX(0)";
+				img[i-1].style.zIndex='1';
+			}else{
+				img[i-1].style.zIndex='1';
+				img[i-1].style.transform='translateX(0)';
+				img[i+1].style.zIndex='2';
+			}
+			img[i].style.transform="translateX(235px)";
+			img[i].style.zIndex='3';
+			img[i].style.top = '0';
+			images[i].style.height="100%";
+			i++;
+			if(i==img.length){
+				i=0;
+			}
+			console.log(i);
+		}
+		play();
+
+	</script>
+</body>
+</html>

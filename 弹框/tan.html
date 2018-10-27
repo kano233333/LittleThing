@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>弹框</title>
+    <style>
+        *{margin:0; padding:0;}
+        .click{
+            width:150px;
+            height:50px;
+            border:1px solid #8c8d8d;
+            border-radius:15px;
+            position:fixed;
+            top:40%;
+            left:40%;
+            color: #d3d2cb;
+            box-shadow: 2px 2px 5px #c3c4c4;
+        }
+        .click p{
+            font-size:25px;
+            margin-top:5%;
+            text-align: center;
+            cursor:pointer;
+        }
+
+        .kuang{
+            width:400px;
+            height:150px;
+            border:1px solid #afb0b0;
+            border-radius:3px;
+            box-shadow:2px 2px 5px #c3c4c4;
+            position:fixed;
+            top:30%;
+            left:30%;
+            background-color: #fff;
+            display:none;
+        }
+
+        .shang{
+            width:100%;
+            height:25%;
+            border-bottom:1px solid #c3c4c4;
+        }
+        .zhong{
+            width:100%;
+            height:48%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .zhongImg{
+            width:15%;
+            height:80%;
+        }
+        .zhongImg img{
+            width:100%;
+            height:100%;
+        }
+        .xia{
+            width:100%;
+            height:25%;
+            border-top:1px solid #c3c4c4;
+            display: flex;
+            justify-content:center;
+        }
+        .sZi{
+            font-size:16px;
+            padding-top:2%;
+            padding-left:2%;
+            float:left;
+        }
+        .sQu{
+            width: 10%;
+            height:100%;
+            /*background-color: #ffbfb5;*/
+            float:right;
+            cursor:pointer;
+        }
+        .sQu img{
+            width:100%;
+            height:100%;
+        }
+
+        .sure{
+            width:15%;
+            height:70%;
+            border:1px solid #8c8d8d;
+            border-radius:5px;
+            margin-top:1.5%;
+            cursor:pointer;
+        }
+
+        .sure p{
+            font-size:15px;
+            text-align:center;
+            padding-top:5%;
+        }
+    </style>
+</head>
+
+<body>
+<div class="click">
+    <p>点一下</p>
+</div>
+<div class="kuang0">
+<div class="kuang">
+    <div class="shang">
+        <div class="sZi">提示对话框</div>
+        <div class="sQu"><img src="cha.png"></div>
+    </div>
+    <div class="zhong">
+        <div class="zhongImg">
+            <img src="jin.png">
+        </div>
+        <div class="zhongZi">请先关闭一些选项卡（最多打开十个！）</div>
+    </div>
+    <div class="xia">
+        <div class="sure">
+            <p>确定</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    function click(){
+        let kuang=document.getElementsByClassName('kuang')[0];
+        let sure=document.getElementsByClassName('sure')[0];
+        let clickContent=document.getElementsByClassName('click')[0];
+        let sQu=document.getElementsByClassName('sQu')[0];
+        clickContent.onmousemove=function(){
+            this.getElementsByTagName('p')[0].style.color='#000';
+        };
+        clickContent.onmouseleave=function(){
+            this.getElementsByTagName('p')[0].style.color='#d3d2cb';
+        };
+        clickContent.onclick=function(){
+            kuang.style.display="block";
+        };
+
+        sure.onmousemove=function(){
+            this.style.borderColor="#A1D0EE";
+        };
+        sure.onmouseout=function(){
+            this.style.borderColor="#8C8D8D";
+        };
+        sQu.onmouseenter=function(){
+            this.style.backgroundColor="#ffbfb5";
+        };
+        sQu.onmouseout=function(){
+            this.style.backgroundColor="#fff";
+        };
+        sQu.onclick=function(){
+            kuang.style.display='none';
+        }
+    }
+    click();
+</script>
+</body>
+</html>

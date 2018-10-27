@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
+    <style>
+        body{
+            background-color: #1b1c1b;
+        }
+        #box{
+            width:650px;
+            height:300px;
+            position:fixed;
+            right:0;
+            left:0;
+            top:0;
+            bottom:0;
+            margin:auto;
+            display:flex;
+            justify-content: space-evenly;
+        }
+        .y{
+            width:11.5%;
+            height:100%;
+            border-radius:15px;
+            display: none;
+            filter: brightness(80%);
+        }
+        #box .img1{
+            background:burlywood url("1.jpeg") center;
+        }
+        #box .img2{
+            background:burlywood url("back.jpeg") top;
+        }
+        #box .img3{
+            background:burlywood url("back2.jpeg") top;
+        }
+        #box .img4 {
+            background: burlywood url("gu1.jpeg") center;
+        }
+        #box .img5{
+            background:burlywood url("gu2.jpeg") center;
+        }
+        #box .img6{
+            background:burlywood url("gu3.jpeg") center;
+        }
+        #box .img7{
+            background:burlywood url("gu4.jpeg") center;
+        }
+        #box .img8{
+            background:burlywood url("gu6.jpeg") center;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="img1 y"></div>
+    <div class="img2 y"></div>
+    <div class="img3 y"></div>
+    <div class="img4 y"></div>
+    <div class="img5 y"></div>
+    <div class="img6 y"></div>
+    <div class="img7 y"></div>
+    <div class="img8 y"></div>
+</div>
+
+<script>
+    <!---->
+    var p=1;
+    <!---->
+    $('#box div').show(1000).mouseenter(function(){
+        $(this).css({
+            'cursor':'pointer',
+            'filter':'brightness(110%)'
+        });
+    }).mouseleave(function(){
+        $(this).css({
+            'filter':'brightness(80%)'
+        })
+    }).click(function(){
+        if(p){
+            $(this).siblings().animate({width:'hide',height:'hide'},1200);
+            $(this).animate({width:'100%'},1000);
+            p=0;
+        }else if(p===0){
+            $(this).animate({width:'11.5%'},1200);
+            $(this).siblings().animate({width:'show',height:'show'},800);
+            p=1;
+        }
+    });
+</script>
+</body>
+</html>

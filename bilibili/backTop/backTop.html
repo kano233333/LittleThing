@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>backTop</title>
+
+	<style>
+		body{
+			height: 2000px;
+		}
+		#box{
+			width: 60px;
+			height: 86px;
+			position: fixed;
+			bottom: 10%;
+			right: 3%;
+			background-image: url('1.png');
+			background-size: 100% 100%;
+			cursor: pointer;
+			display: none;
+		}
+
+		@keyframes playTop{
+			5%{
+				bottom: 11%;
+				background-image: url('2.png');
+			}
+			10%{
+				bottom: 12%;
+			}
+			15%{
+				bottom: 11%;
+				background-image: url('3.png');
+			}
+			20%{
+				bottom: 10%;
+				background-image: url('4.png');
+			}
+			25%{
+				bottom: 11%;
+				background-image: url('5.png');
+			}
+			30%{
+				bottom: 12%;
+				background-image: url('6.png');
+			}
+			40%{
+				background-image: url('7.png');
+			}
+			50%{
+				background-image: url('8.png');
+			}
+			100%{
+				bottom: 85%;
+				background-image: url('9.png');
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+	</div>
+	<script src="backTop.js"></script>
+</body>
+</html>

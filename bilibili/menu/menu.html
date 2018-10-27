@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二级菜单</title>
+
+    <style>
+        *{padding:0;margin:0;font-size:12px;}
+        li{list-style: none;}
+
+        #menu{
+            width:530px;
+            height:300px;
+            position:fixed;
+            top:10%;
+            left:25%;
+            display:flex;
+            flex-direction: column;
+        }
+
+        .menuTop{
+            width:100%;
+            display:flex;
+            justify-content:space-evenly;
+        }
+
+        .home{
+            width:30px;
+            height:60px;
+            display:flex;
+            flex-direction:column;
+            cursor: pointer;
+        }
+
+        .homeTop{
+            height:40%;
+            background-image:url("1.png");
+            background-size:100% 100%;
+        }
+        .homeBottom{
+            text-align:center;
+        }
+
+        .column{
+            width:30px;
+            height:60px;
+            display: flex;
+            flex-direction:column;
+            cursor: pointer;
+        }
+
+        .columnTop{
+            height:40%;
+        }
+        .columnTop p{
+            margin-top:22%;
+        }
+
+        .columnTop p{
+            background-color:#ffbae3;
+            border-radius:15%;
+            color:#fff;
+            font-weight:bold;
+            text-align:center;
+        }
+
+        .columnBottom{
+            text-align:center;
+        }
+
+        .cartoonMenu{
+            position:absolute;
+            left:85px;
+        }
+        .fan{
+            position:absolute;
+            left:150px;
+        }
+        .create{
+            position:absolute;
+            left:215px;
+        }
+        .music{
+            position:absolute;
+            left:275px;
+        }
+        .dance{
+            position:absolute;
+            left:340px;
+        }
+        .game{
+            position:absolute;
+            left:400px;
+        }
+        .science{
+            position:absolute;
+            left:465px;
+        }
+
+
+        .cartoonMenu,.fan,.create,.music,.dance,.game,.science{
+            width:135px;
+            border-radius:5%;
+            display:none;
+        }
+
+        .cartoonMenu0 ,.fan0,.create0,.music0,.dance0,.game0,.science0{
+            padding-top:8px;
+            padding-left:2px;
+            display: flex;
+            cursor:pointer;
+        }
+
+        .left,.right{
+            width:4%;
+            height:4%;
+            margin:0 4%;
+        }
+
+        .right{
+            display: none;
+        }
+        .left img,.right img{
+            width:100%;
+            height:100%;
+        }
+
+        @keyframes rightMove
+        {
+            100% {
+                transform: translate(10px);
+            }
+        }
+
+        @-webkit-keyframes rightMove
+        {
+            100% {
+                transform: translate(10px);
+            }
+        }
+
+        @keyframes rightOut
+        {
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        @-webkit-keyframes rightOut
+        {
+            100% {
+                transform: translate(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div id="menu" class="menu">
+    <div class="menuTop">
+    <div class="home">
+        <div class="homeTop"></div>
+        <div class="homeBottom">
+            <p>首页</p>
+        </div>
+    </div>
+
+    <div class="column" onmousemove=columnMove('cartoonMenu'); onmouseout=columnOut('cartoonMenu')>
+        <div class="columnTop"><p>961</p></div>
+        <div class="columnBottom"><p>动画</p></div>
+    </div>
+
+    <div class="column" onmousemove=columnMove('fan'); onmouseout=columnOut('fan')>
+        <div class="columnTop"><p>118</p></div>
+        <div class="columnBottom"><p>番剧</p></div>
+        <!--<div class="cartoonMenu"></div>-->
+    </div>
+    <div class="column" onmousemove=columnMove('create'); onmouseout=columnOut('create')>
+        <div class="columnTop"><p>82</p></div>
+        <div class="columnBottom"><p>国创</p></div>
+        <!--<div class="cartoonMenu"></div>-->
+    </div>
+    <div class="column" onmousemove=columnMove('music'); onmouseout=columnOut('music')>
+        <div class="columnTop"><p>999+</p></div>
+        <div class="columnBottom"><p>音乐</p></div>
+        <!--<div class="cartoonMenu"></div>-->
+    </div>
+    <div class="column" onmousemove=columnMove('dance'); onmouseout=columnOut('dance')>
+        <div class="columnTop"><p>225</p></div>
+        <div class="columnBottom"><p>舞蹈</p></div>
+        <!--<div class="cartoonMenu"></div>-->
+    </div>
+    <div class="column" onmousemove=columnMove('game'); onmouseout=columnOut('game')>
+        <div class="columnTop"><p>999+</p></div>
+        <div class="columnBottom"><p>游戏</p></div>
+        <!--<div class="cartoonMenu"></div>-->
+    </div>
+    <div class="column" onmousemove=columnMove('science'); onmouseout=columnOut('science')>
+        <div class="columnTop"><p>999+</p></div>
+        <div class="columnBottom"><p>科技</p></div>
+        <!--<div class="cartoonMenu"></div>-->
+    </div>
+    </div>
+
+
+    <div class="menuBottom">
+    <div class="cartoonMenu" onmousemove=columnMove('cartoonMenu'); onmouseout=columnOut('cartoonMenu')>
+        <div class="cartoonMenu0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>MAD·AMV</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="cartoonMenu0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>MMD·3D</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="cartoonMenu0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>短片·手书·配音</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="cartoonMenu0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>综合</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="fan" onmousemove=columnMove('fan'); onmouseout=columnOut('fan')>
+        <div class="fan0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>连载动画</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="fan0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>完结动画</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="fan0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>资讯</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="fan0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>官方延伸</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="fan0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>新番时间表</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="fan0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>番剧索引</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="create" onmousemove=columnMove('create'); onmouseout=columnOut('create')>
+        <div class="create0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>国产动画</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="create0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>国产原创相关</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="create0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>布袋戏</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="create0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>资讯</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="create0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>新番时间表</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="create0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>番剧索引</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="music" onmousemove=columnMove('music'); onmouseout=columnOut('music')>
+        <div class="music0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>原创音乐</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="music0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>翻唱</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="music0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>VOCALOID·UTAU</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="music0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>演奏</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="music0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>三次元音乐</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="music0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>OP/ED/OST</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="music0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>音乐选集</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="dance" onmousemove=columnMove('dance'); onmouseout=columnOut('dance')>
+        <div class="dance0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>宅舞</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="dance0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>三次元舞蹈</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="dance0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>舞蹈教程</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="game" onmousemove=columnMove('game'); onmouseout=columnOut('game')>
+        <div class="game0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>单机游戏</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="game0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>电子竞技</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="game0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>手机游戏</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="game0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>网络游戏</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="game0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>桌游棋牌</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="game0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>GMV</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="game0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>音游</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="game0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>Mugen</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="science" onmousemove=columnMove('science'); onmouseout=columnOut('science')>
+        <div class="science0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>趣味科普人文</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="science0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>野生技术协会</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="science0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>演讲·公开课</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="science0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>星海</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="science0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>数码</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="science0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>机械</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+
+        <div class="science0">
+            <div class="left">
+                <img src="left.png">
+            </div>
+            <div class="center">
+                <p>汽车</p>
+            </div>
+            <div class="right">
+                <img src="right.png">
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
+<script src="menu.js"></script>
+</body>
+</html>

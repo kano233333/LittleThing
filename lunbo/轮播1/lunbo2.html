@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        *{padding:0;margin:0;}
+        img{
+            border:0;
+        }
+        .container{
+            margin:150px auto;
+            width:500px;
+            height:300px;
+            border-radius: 5px;
+            position:relative;
+            cursor:pointer;
+            overflow:hidden;
+            box-shadow: 2px 2px 4px #c3c4c4;
+        }
+        .container img{
+            width:500px;
+            height:300px;
+        }
+        .images{
+            width:500%;
+            height:100%;
+            display: flex;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+
+        .arronLeft,.arronRight{
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            display:none;
+        }
+        .arronRight img,.arronLeft img{
+            width:100%;
+            height:100%;
+        }
+        .arronLeft{
+            position:absolute;
+            top:40%;
+            left:0;
+        }
+        .arronRight{
+            position:absolute;
+            top:40%;
+            right:0;
+        }
+        .arronRight:hover,.arronLeft:hover{
+            opacity:0.5;
+        }
+
+        .paging{
+            width:100%;
+            height:20px;
+            position:absolute;
+            bottom:10px;
+            display:flex;
+            justify-content: center;
+        }
+        .page{
+            width:8px;
+            height:8px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border:1px solid #757674;
+            border-radius: 50%;
+            /*background-color: #8c8d8d;*/
+            margin:5px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="images">
+        <img src="1.jpeg">
+        <img src="2.jpeg">
+        <img src="3.jpeg">
+        <img src="4.jpeg">
+        <img src="5.jpeg">
+    </div>
+
+    <div class="arronLeft">
+        <img src="left.png">
+    </div>
+    <div class="arronRight">
+        <img src="right.png">
+    </div>
+    <div class="paging">
+        <div class="page"></div>
+        <div class="page"></div>
+        <div class="page"></div>
+        <div class="page"></div>
+        <div class="page"></div>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    var container=document.getElementsByClassName('container')[0];
+    var left=document.getElementsByClassName('arronLeft')[0];
+    var right=document.getElementsByClassName('arronRight')[0];
+    var page=document.getElementsByClassName('page');
+    var img=document.getElementsByClassName('images')[0];
+    var i=0;
+    var timer;
+
+    //球的颜色
+    function pageShift(){
+        for(let n=0;n<page.length;n++){   //清空全部球的 background-color
+            page[n].style.backgroundColor='';
+        }
+        page[i].style.backgroundColor="#757674";   //指定球
+    }
+
+    container.onmousemove=function(){
+        left.style.display='block';
+        right.style.display='block';
+        clearTimeout(timer);
+    };
+    container.onmouseout=function(){
+        left.style.display='none';
+        right.style.display='none';
+        timer=setInterval(time,2000);
+    };
+
+    page[0].style.backgroundColor="#757674";
+    function shift(){
+        timer=setInterval(time,2000);
+    }
+    shift();
+
+    function time(){
+        i++;
+        if(i===5){
+            i=0;
+        }
+        img.style.transform="translate("+(-500*i)+"px";
+        pageShift();
+    }
+    //page小圆球（自动）
+    for(let k=0;k<page.length;k++){
+        page[k].onclick=function(){
+            img.style.transform="translate("+-500*k+"px";
+            i=k;
+            pageShift();
+        }
+    }
+
+    //左翻
+    left.onclick=function(){
+        i--;
+        if(i===-1){
+            i=4;
+        }
+        img.style.transform="translate("+-500*i+"px)";
+        pageShift();
+    };
+
+    //右翻
+    right.onclick=function(){
+        i++;
+        if(i===5){
+            i=0;
+        }
+        img.style.transform="translate("+-500*i+"px)";
+        pageShift();
+    }
+
+</script>
+
+

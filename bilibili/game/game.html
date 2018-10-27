@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>game</title>
+
+    <style>
+        *{margin:0; padding:0;}
+        li{list-style: none;}
+
+        .main{
+            width:600px;
+            height:350px;
+            position:fixed;
+            top:10%;
+            left:25%;
+            border-radius:5px;
+            box-shadow:2px 2px 5px #8c8d8d;
+            display:flex;
+        }
+        .left {
+            width: 55%;
+            height: 100%;
+        }
+        .right {
+            width: 45%;
+            height: 100%;
+            position:relative;
+        }
+        .leftTop{
+            margin:5% 5%;
+            width:90%;
+            height:50%;
+            border-radius:5px;
+            background-image:url("1.png");
+            background-size:100% 100%;
+        }
+
+        .leftBottom{
+            width:100%;
+            height:37%;
+            margin-top:8%;
+            display: flex;
+            justify-content:space-evenly;
+        }
+        .leftBottom p{
+            text-align:center;
+        }
+        .one,.two,.three{
+            width:30%;
+            height:100%;
+            float:left;
+            cursor:pointer;
+        }
+        .oneImg,.twoImg,.threeImg{
+            width:90%;
+            height:64%;
+            margin: 5% auto;
+            border-radius:8px;
+        }
+        .oneImg{
+            background-image:url("2.png");
+            background-size:100% 100%;
+        }
+        .twoImg{
+            background-image:url("3.png");
+            background-size:100% 100%;
+        }
+        .threeImg{
+            background-image:url("4.png");
+            background-size:100% 100%;
+        }
+
+        .rightTop{
+            margin-left:5%;
+            width:40%;
+            height:10%;
+        }
+        .rightTop img{
+            width:100%;
+            height:100%;
+        }
+
+        .rightBottom{
+            width:60%;
+            height:90%;
+            margin-left:10%;
+            padding-top:5%;
+
+        }
+        .rightBottom li{
+            margin-top:10%;
+            cursor:pointer;
+        }
+
+        .Img{
+            position:absolute;
+            top:140px;
+            right:-150px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="left">
+        <div class="leftTop">
+        </div>
+        <div class="leftBottom">
+            <div class="one" id="one">
+                <div class="oneImg"></div>
+                <p>ICHO偶</p>
+            </div>
+            <div class="two" id="two">
+                <div class="twoImg"></div>
+                <p>苍之骑士</p>
+            </div>
+            <div class="three" id="three">
+                <div class="threeImg"></div>
+                <p>幻想战舞</p>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="rightTop">
+            <img src="11.png">
+        </div>
+        <div class="rightBottom">
+            <ul>
+                <li>Fate/Go</li>
+                <li>幻游猎人</li>
+                <li>魔法禁书录</li>
+                <li>少女咖啡枪</li>
+                <li>螺旋境界线</li>
+                <li>如果的世界</li>
+                <li>魔法少女小圆</li>
+            </ul>
+        </div>
+    </div>
+    <div class="Img">
+        <img src="6.png">
+    </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>

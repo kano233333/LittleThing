@@ -1,0 +1,74 @@
+*{margin:0;padding:0;}
+
+#tou{
+    width:320px;
+    height:600px;
+    background-color: #6b9796;
+    margin:20px auto;
+}
+
+.title{
+    width:320px;
+    height:32px;
+    color:#fff;
+    font-size: 24px;
+    font-weight:bold;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.singer{
+    width:320px;
+    height:30px;
+    color:#ccc;
+    text-align: center;
+    font-size:14px;
+    line-height:30px;
+}
+
+.play{
+    width:190px;
+    height:190px;
+    margin:20px auto;
+    background-image: url("bo.png");
+    background-size: 100% 100%;
+}
+
+.rotate{
+    //css3 定义动画：名称 时间 匀速运动 无限循环
+    animation:rot 10s linear infinite;
+    -webkit-animation:rot 10s linear infinite; /*Safari and Chrome*/
+}
+@keyframes rot{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+@-webkit-keyframes rot{    /*Safari and Chrome*/
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.lrc{
+    width:280px;
+    height:280px;
+    /*border:1px solid #6bffe5;*/
+    margin:1px auto;
+    color:#ccc;
+    font-size:12px;
+    line-height: 20px;
+    text-align: center;
+    overflow: hidden;  /*隐藏超出*/
+}
+
+#content{
+    position:relative;
+    top:0;
+}
