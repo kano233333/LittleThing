@@ -6,7 +6,7 @@ input,textarea,select{ padding:0; margin:0; font-family:Arial, Helvetica, sans-s
 li { list-style:none;}
 img { border:none;}
 a { text-decoration:none;}
-a:hovor {text-decoration:underline;}
+a:hover {text-decoration:underline;}
 
 body{ background: #FFF url(../image/head.png) repeat-x;
 }
@@ -76,13 +76,13 @@ body{ background: #FFF url(../image/head.png) repeat-x;
 		 position:absolute;}
 .search .text {width:230px;
                height:30px;
-			   float:ieft;
+			   float:left;
 			   position:absolute; top:0; left:20px;
 			   background:none; border:none;
 			   font-size:13px;
 			   color:#666;
 			   outline:none;}
-.search .btn {widch:42px;
+.search .btn {width:42px;
               height:30px;
 			  float:left;
 			  position:absolute; top:0; left:0;

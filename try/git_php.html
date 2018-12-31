@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>html</title>
+</head>
+<body>
+	
+<script type="text/javascript">
+	function ajax(obj) {
+  var ajaxRequest = new XMLHttpRequest();
+  var method = obj.method.toUpperCase();
+  var url = obj.url;
+  var data = obj.data;
+
+  if (method === "GET") {
+    if (data) {
+      url = url + "?";
+      for (var i in data) {
+        url = url + i + "=" + data[i] + "&";
+      }
+      url = url.substring(0, url.length - 1);
+    }
+    ajaxRequest.open(method, url);
+    ajaxRequest.send();
+  } else if (method === "POST") {
+    ajaxRequest.open(method, url);
+    ajaxRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    ajaxRequest.send(data);
+  }
+
+  ajaxRequest.onreadystatechange = function () {
+    if (ajaxRequest.readyState === 4) {
+      if (ajaxRequest.status === 200) {
+        if (obj.success !== undefined) {
+          obj.success(ajaxRequest.responseText);
+        }
+      } else {
+        if (obj.fail !== undefined) {
+          obj.fail(ajaxRequest.status);
+        }
+      }
+    }
+  }
+}
+ajax({
+	url:'./git_php.php',
+	method:'GET',
+	success:function(data){
+		console.log(data)
+	},
+	error:function(err){
+		console.log(err)
+	}
+})
+</script>
+</body>
+</html>
