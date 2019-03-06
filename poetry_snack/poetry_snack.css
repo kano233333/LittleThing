@@ -1,0 +1,327 @@
+*{padding:0;margin:0;font-family:"Book Antiqua";}
+
+#game_start{
+    width:400px;
+    height:250px;
+    position:fixed;
+    margin: auto;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    display:flex;
+    flex-direction:column;
+    z-index: 3;
+}
+
+#game_name{
+    border-bottom:1px solid #000000;
+    height:40%;
+    font-size:40px;
+    letter-spacing: -6px;
+    font-weight:bold;
+    display: flex;
+}
+#game_name div{
+    margin:auto;
+}
+#start{
+    height:50%;
+    display:flex;
+}
+.start_p{
+    width:120px;
+    height:40px;
+    font-size:30px;
+    letter-spacing: 2px;
+    text-align: center;
+    border-radius:8px;
+    color: #1b1c1b;
+    margin:auto;
+}
+.start_p:hover{
+    border:1px solid #676961;
+    cursor:pointer;
+    color: #0f4d6a;
+    /*background-color: #f6edf0;*/
+    box-shadow: 1px 1px 3px #9a9ba0;
+}
+
+#game_main{
+    width:1000px;
+    height:100%;
+    /*border:2px solid chocolate;*/
+    position:fixed;
+    margin: auto;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    display:flex;
+    flex-direction:column;
+    opacity: 0;
+}
+
+#game_main .game_title{
+    height:10%;
+    /*border:1px solid violet;*/
+    display: flex;
+}
+#game_main .game_title div{
+    font-size:40px;
+    font-weight:bold;
+    margin:auto;
+}
+#game_main .game_subject{
+    height:5%;
+    /*border:1px solid violet;*/
+    display: flex;
+}
+#game_main .game_subject div{
+    font-size: 22px;
+    font-weight:bold;
+    margin:auto;
+}
+#game_main .game_score{
+    height:5%;
+    padding-bottom: 1%;
+    display: flex;
+    position:relative;
+}
+#game_main .game_score div:nth-of-type(1){
+    font-size: 22px;
+    font-weight:bold;
+    margin:auto;
+}
+
+.game_score .parse,.continue,.restart{
+    width:4%;
+    height:100%;
+    background-size:100% 100%;
+    position:absolute;
+    top:0;
+}
+.parse{
+    background-image:url("img/parse.png");
+    right:7%;
+}
+.parse:hover{
+    cursor:pointer;
+    border:2px solid #8c8d8d;
+}
+.continue{
+    background-image:url("img/start.png");
+    right:7%;
+}
+.continue:hover{
+    cursor:pointer;
+    border:2px solid #8c8d8d;
+}
+.game_score .restart{
+    background-image:url("img/restart.png");
+    right:2%;
+}
+.restart:hover{
+    cursor:pointer;
+    border:2px solid #8c8d8d;
+}
+
+#game_main .game_container{
+    height:76%;
+    /*background-color: #dee0e0;*/
+    position:relative;
+    background-image: url("img/back3.png");
+    background-size:100% 100%;
+    overflow: hidden;
+}
+#snack div{
+    float:right;
+}
+.snack{
+    width:20px;
+    height:20px;
+    background-color: #b5b1af;
+    border-radius:50%;
+}
+
+.snack_head{
+    width:20px;
+    height:20px;
+    background-color: #6e716f;
+    border-radius:50%;
+    z-index:3;
+}
+.apple{
+    width:20px;
+    height:20px;
+    background-color: #b51031;
+    color:#fff;
+    font-size:16px;
+    border-radius:25%;
+}
+
+#game_over{
+    width:450px;
+    height:280px;
+    position:fixed;
+    margin: auto;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    display:flex;
+    flex-direction:column;
+    background-image:url("img/kuang2.png");
+    background-size:100% 100%;
+    z-index:333;
+    visibility: hidden;
+    opacity: 0.8;
+    /*animation:ending 1.5s forwards;*/
+    /*-webkit-animation: ending 1.5s forwards;*/
+}
+.answer{
+    margin-top:5%;
+    height:30%;
+    display:flex;
+}
+.answer div{
+    margin:auto;
+    border-bottom:2px solid #ce6741;
+    font-size:30px;
+}
+.over-score{
+    margin-top:2%;
+    height:20%;
+    display: flex;
+}
+.over-score div{
+    margin:auto;
+    font-size:30px;
+}
+.choice{
+    margin-top:5%;
+    height:20%;
+    display:flex;
+    justify-content:center;
+}
+.choice .choice1,.choice2{
+    display: flex;
+    width:40%;
+}
+.choice div div{
+    margin:auto;
+    font-size: 22px;
+}
+.choice div div:hover{
+    cursor:pointer;
+    border-bottom:2px solid #850c24;
+}
+
+#cover{
+    background-color: #b3b4b4;
+    opacity:0.8;
+}
+
+/*--------------------------------------------------------------------*/
+#aaa{
+    width:520px;
+    height:400px;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    margin:auto;
+    z-index:3;
+    background-image: url("img/back3.png");
+    background-size: 100% 100%;
+    opacity: 0;
+}
+/*-----------------------------------------------------------------------*/
+
+
+
+
+/*----------------------------------------------------*/
+@keyframes hidden {
+    100%{
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes hidden {
+    100%{
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+@keyframes show {
+    100%{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@-webkit-keyframes show {
+    100%{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/*-canvas-*/
+@keyframes canHidden {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes canHidden {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+@keyframes canShow {
+    100%{
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes canShow {
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes ending {
+    0%{
+        visibility:visible;
+        transform:translateY(-200px);
+    }
+    100%{
+        visibility:visible;
+        transform:translateY(0);
+    }
+}
+@-webkit-keyframes ending {
+    0%{
+        visibility:visible;
+        transform:translateY(-200px);
+    }
+    100%{
+        visibility:visible;
+        transform:translateY(0);
+    }
+}
+/*----------------------------------------------------*/
+
+
+
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    function Teacher(){
+        this.name = 'aaa';
+    }
+    Teacher.prototype.word = function(){
+        console.log("teacher作业");
+    };
+
+    function Student(teacher){
+        this.teachers =[];
+        this.teachers.push(teacher);
+    }
+
+    var x = new Teacher();
+    var y = new Student(x);
+    console.log(y);
+    y.word();
+</script>
+</html>

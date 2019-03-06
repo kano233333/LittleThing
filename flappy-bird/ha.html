@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ha</title>
+    <style>
+        canvas{
+            border:1px solid cadetblue;
+        }
+    </style>
+</head>
+<body>
+<canvas id="my-canvas" width="500" height="500"></canvas>
+
+<script>
+    var myCanvas = document.getElementById('my-canvas');
+    var ctx = myCanvas.getContext('2d');
+    var myImg = new Image();
+    // var birdArr = ['./img/bird0_0.png','./img/bird0_1.png','./img/bird0_2.png'];
+    myImg.src = './img/bird0_0.png';
+    var deg=0;
+    var x = 25;
+    var choice = false;
+    myImg.onload = function(){
+        var h=-25;
+        var timers = 2;
+        setInterval(function(){
+            timers+=1;
+
+            if(!choice) {
+                h += timers;
+            }else{
+                h -=40;
+                deg = -0.4;
+                choice = false;
+            }
+            deg+=0.1;
+            ctx.clearRect(0,0,500,500);
+            ctx.save();
+            ctx.translate(100,100+h);
+            ctx.rotate(deg);
+            ctx.drawImage(myImg,-25,-25);
+            ctx.restore();
+        },200)
+        document.onclick = function(){
+            choice = true;
+        }
+    }
+</script>
+</body>
+</html>

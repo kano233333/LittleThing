@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>file</title>
+    <style>
+        #aaa{
+            width:520px;
+            height:400px;
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom: 0;
+            margin:auto;
+            border:1px solid cornflowerblue;
+            display:flex;
+            opacity: 0;
+        }
+        @keyframes hidden {
+            0%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes hidden {
+            0%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+        @keyframes show {
+            100%{
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes show {
+            100%{
+                opacity: 1;
+            }
+        }
+        #bbb{
+            width:400px;
+            height:250px;
+            border:1px solid crimson;
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom: 0;
+            margin:auto;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+<canvas id="aaa">
+</canvas>
+<button id="close">关闭</button>
+<!--<div id="bbb"></div>-->
+
+
+<script>
+    var close=document.getElementById('close');
+    close.onclick=function(){
+        window.open("about:blank","_self").close();
+    };
+
+
+
+    var aaa=document.getElementById('aaa');
+    var ctx=aaa.getContext("2d");
+    aaa.onmousemove=function(){
+        aaa.style.animation='show 2s forwards';
+    };
+    aaa.onmouseleave=function(){
+        aaa.style.animation='hidden 1s forwards';
+    };
+    function draw(x,y,m,n){
+        ctx.fillRect(x,y,m,n);
+    }
+
+    draw(5,0,10,4);
+    draw(15,0,5,35);
+    draw(20,31,10,4);
+    draw(30,0,5,35);
+
+    draw(35,0,230,4);
+    draw(265,0,5,35);
+    draw(270,31,10,4);
+    draw(280,0,5,35);
+    draw(285,0,10,4);
+    draw(295,0,5,10);
+    draw(255,10,45,4);
+    draw(250,10,5,10);
+    draw(250,20,45,4);
+    draw(295,20,5,109);
+    draw(250,125,45,4);
+    draw(250,129,5,10);
+    draw(255,135,40,4);
+    draw(295,135,5,15);
+    draw(280,146,15,4);
+    draw(280,115,5,35);
+    draw(280,114,5,20);
+    draw(270,114,10,4);
+    draw(265,114,6,40);
+
+    draw(30,146,235,4);
+
+    draw(30,115,5,35);
+    draw(20,115,10,4);
+    draw(15,115,5,35);
+    draw(5,146,10,4);
+    draw(0,135,5,15);
+    draw(5,135,40,4);
+    draw(45,129,5,10);
+    draw(0,125,50,4);
+
+    draw(0,20,5,109);
+
+    draw(0,20,45,4);
+    draw(45,10,5,14);
+    draw(0,10,45,4);
+    draw(0,0,5,10);
+</script>
+
+</body>
+</html>
