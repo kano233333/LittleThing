@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>smart pocket</title>
+    <link rel="stylesheet" href="css.css">
+    <script src="vue/dist/vue.js"></script>
+    <script src="vue-resource/vue-reource.js"></script>
+</head>
+<body>
+<div id="container">
+    <div id="head">
+        <div class="head-title">
+            <a href="">
+                <img src="img/loge.png" alt="#">
+                <p>smart pocket</p>
+            </a>
+        </div>
+
+        <transition name="nav">
+        <div id="nav" v-show="nav">
+            <div class="newWallet" id="new-wallet">
+                <div class="catalog" @click="navClick($event)" @mouseenter="navBgShow($event)" @mouseleave="navBgHide($event)">
+                    <!--<a href="#new-wallet">新钱包</a>-->
+                    新钱包
+                </div>
+            </div>
+            <div class="send" id="send">
+                <div class="catalog" @click="navClick($event)" @mouseenter="navBgShow($event)" @mouseleave="navBgHide($event)">
+                    <!--<a href="#send">发送以太币/发送代币</a>-->
+                    发送以太币/发送代币
+                </div>
+            </div>
+            <div class="query" id="query">
+                <div class="catalog" @click="navClick($event)" @mouseenter="navBgShow($event)" @mouseleave="navBgHide($event)">
+                    <!--<a href="#query">查询交易</a>-->
+                    查询交易
+                </div>
+            </div>
+        </div>
+        </transition>
+    </div>
+
+    <div id="main">
+        <!------------------------------------------------------------>
+        <transition name="main_first">
+        <div class="main-first" v-show="!nav">
+            <div class="newWallet-first main-first-div" @click="navShow('n')">
+                <div class="newWallet-first-img"></div>
+                <div class="newWallet-first-p"><p>新钱包</p></div>
+            </div>
+
+            <div class="sendMain-first  main-first-div" @click="navShow('s')">
+                <div class="sendMain-first-img"></div>
+                <div class="sendMain-first-p"><p>发送以太币/发送代币</p></div>
+            </div>
+            <div class="queryMain-first  main-first-div" @click="navShow('q')">
+                <div class="queryMain-first-img"></div>
+                <div class="queryMain-first-p"><p>查询交易</p></div>
+            </div>
+        </div>
+        </transition>
+
+        <!-------------------------------------------------------------->
+
+        <div class="main-two" v-show="mainTwo">
+            <div class="newWalletMain" v-show="navList.n">
+                    <div class="new-pass">
+                        <div class="newWallet-title">
+                            <div class="newWallet-title-p">生成钱包</div>
+                        </div>
+                        <div class="newWallet-create">
+                            <div class="newWallet-create-prompt">
+                                <p>输入一个强密码（至少9位）</p>
+                            </div>
+                            <div class="newWallet-create-input">
+                                <input :type="newWalletInput" id="new-password" v-model="password">
+                                <div class="pass-eye" @click="passEye($event)"></div>
+                            </div>
+                            <div class="newWallet-create-button">
+                                <button @click="cli">生成钱包</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prompt">
+                        <div class="prompt-img"></div>
+                        <div class="prompt-p">
+                            <h5>Already have a wallet somewhere?</h5>
+                            <p><span>Ledger/TREZOR/Digital Bitbox/Secalot</span>: Use your <a>hardware wallet</a>. Your device is your wallet.<br/>
+                                <span>MetaMask</span>:Connect via your <a>MetaMask Extension</a>. So easy! Keys stay in MetaMask, not on a phishing site! Try it today.<br/>
+                                <span>Jaxx/imToken</span>:Use your <a>Mnemonic Phrase</a> to access your account.<br/>
+                                <span>Mist/Geth/Parity</span>: Use your <a>Keystore File (UTC/JSON)</a> to access your account.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pass-after">
+                        <p>保存你的密钥库或者私钥,不要忘记你的密码。</p>
+                        <button><a href="aDownload" download="">下载 密钥库文件(UTC/JSON)</a></button>
+                    </div>
+                </div>
+
+            <div class="sendMain" v-show="navList.s">
+                    <div class="sendMain-title">
+                        <img src="img/sendMain-img.png">
+                        <p>How  would  you  like  to  access  your  wallet?</p>
+                    </div>
+                    <div class="sendMain-method">
+                        <div class="sendMain-img"></div>
+                        <div class="send-du">
+                        <div class="sendMain-method0 sendMain-method1" @click="enterDetailClick($event)">
+                            <p>仅查看地址</p>
+                        </div>
+                        <div class="sendMain-method0 sendMain-method2" @click="enterDetailClick($event)">
+                            <p>MetaMask / Mist</p>
+                        </div>
+                        <div class="sendMain-method0 sendMain-method3" @click="enterDetailClick($event)">
+                            <p>Ledger钱包</p>
+                        </div>
+                        <div class="sendMain-method0 sendMain-method4" @click="enterDetailClick($event)">
+                            <p>TREZOR</p>
+                        </div>
+                        <div class="sendMain-method0 sendMain-method5" @click="enterDetailClick($event)">
+                            <p>数字比特盒</p>
+                        </div>
+                        <div class="sendMain-method0 sendMain-method6" @click="enterDetailClick($event)">
+                            <p>Secalot</p>
+                        </div>
+                        <div class="sendMain-method0 sendMain-method7" @click="enterDetailClick($event)">
+                            <p>密钥库/ JSON文件</p>
+                        </div>
+                        <div class="sendMain-method0 sendMain-method8" @click="enterDetailClick($event)">
+                            <p>助记短语</p>
+                        </div>
+                        <div class="sendMain-method0 sendMain-method9" @click="enterDetailClick($event)">
+                            <p>私钥</p>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-------------------------------------------------->
+                        <div class="sendAddress sendDetail">
+                            <div class="sendAddress-p">
+                                <h3>你的地址</h3>
+                                <p>这是查看余额的推荐方式。<br />
+                                    您只能通过此选项查看余额。请使用其他选项发送。</p>
+                            </div>
+                            <textarea></textarea>
+                        </div>
+
+                        <div class="MetaMask sendDetail">
+                            <h3>MetaMask / Mist</h3>
+                            <p>这是访问您的钱包的推荐方式。<br />
+                                MetaMask是一种浏览器扩展程序，可让您快速，安全，轻松地访问您的钱包。它更安全，因为您从不在网站上输入您的私钥。
+                                它可以保护您免受网络钓鱼和恶意网站的侵害。<br /><br />
+                                <span>
+                                <a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-metamask.html" target="_blank">&nbsp;&nbsp;
+                                如何转移到MetaMask
+                                </a><br />
+                                <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en" target="_blank">
+                                &nbsp;&nbsp;下载MetaMask for Chrome
+                                </a><br />
+                                <a href="https://metamask.io/" target="_blank">
+                                &nbsp;&nbsp;下载MetaMask for Other Browsers
+                                </a><br />
+                            </span>
+                            </p>
+                            <button>连接到MetaMask</button>
+                        </div>
+
+                        <div class="ledger sendDetail">
+                            <h3>Ledger硬件钱包</h3>
+                            <p>这是访问您的钱包的推荐方式。<br />
+                                硬件钱包是一种小型USB设备，可让您快速，安全，轻松地访问钱包。
+                                它更安全，因为您的私钥永远不会离开硬件钱包。它可以保护您免受网络钓鱼，恶意软件等的侵害。<br />
+                                <br />
+                                <span>
+                                <a href="https://ledger.zendesk.com/hc/en-us/articles/115005200009-How-to-use-MyEtherWallet-with-Ledger" target="_blank">
+                            &nbsp;&nbsp;        如何在您的Ledger硬件钱包中使用MyEtherWallet
+                                </a><br/>
+                                <a href="https://www.ledgerwallet.com/r/fa4b?path=/products/" target="_blank">
+                            &nbsp;&nbsp;        没有分类帐？今天来一个。
+                                </a><br />
+                            </span>
+                            </p>
+                            <button>连接到Ledger钱包</button>
+                        </div>
+
+                        <div class="TREZOR sendDetail">
+                            <h3>TREZOR五金钱包</h3>
+                            <p>这是访问您的钱包的推荐方式。<br />
+                                硬件钱包是一种小型USB设备，可让您快速，安全，轻松地访问钱包。
+                                它更安全，因为您的私钥永远不会离开硬件钱包。 它可以保护您免受网络钓鱼，恶意软件等的侵害。<br />
+                                <br />
+                                <span>
+                                <a href="https://blog.trezor.io/trezor-integration-with-myetherwallet-3e217a652e08#.n5fddxmdg" target="_blank">
+                            &nbsp;&nbsp;        如何在MyEtherWallet上使用TREZOR
+                                </a><br />
+                                <a href="https://trezor.io/?a=myetherwallet.com" target="_blank">
+                            &nbsp;&nbsp;        没有TREZOR？现在来一个。
+                                </a><br />
+                            </span>
+                            </p>
+                            <button>连接到TREZOR</button>
+                        </div>
+
+                        <div class="Bitbox sendDetail">
+                            <h3>数字Bitbox硬件钱包</h3>
+                            <p>这是访问您的钱包的推荐方式。<br>
+                                硬件钱包是一种小型USB设备，可让您快速，安全，轻松地访问钱包。
+                                它更安全，因为您的私钥永远不会离开硬件钱包。它可以保护您免受网络钓鱼，恶意软件等的侵害。<br>
+                                <br>
+                               <span>
+                                <a href="https://shiftcrypto.ch/ethereum" target="_blank">
+                            &nbsp;&nbsp;        如何在MyEtherWallet中使用Digital Bitbox
+                                </a><br>
+                                <a href="https://digitalbitbox.com/?ref=mew" target="_blank">
+                            &nbsp;&nbsp;        没有数字位盒？现在来一个。
+                                </a><br>
+                            </span>
+                                <input type="text">
+                                <button>连接到数字位盒</button>
+                            </p>
+                        </div>
+
+                        <div class="Secalot sendDetail">
+                            <h3>Secalot硬件钱包</h3>
+                            <p>这是访问您的钱包的推荐方式。<br>
+                                硬件钱包是一种小型USB设备，可让您快速，安全，轻松地访问钱包。
+                                它更安全，因为您的私钥永远不会离开硬件钱包。它可以保护您免受网络钓鱼，恶意软件等的侵害。<br>
+                                <br>
+                                <span>
+                                <a href="https://www.secalot.com/documentation/ethereum-wallet/" target="_blank">
+                            &nbsp;&nbsp;        如何在MyEtherWallet中使用Secalotbr
+                                </a><br>
+                                <a href="https://secalot.com/?ref=mew" target="_blank">
+                            &nbsp;&nbsp;        没有Secalot？现在来一个。
+                                </a><br>
+                                </span>
+                            </p>
+                            <input type="text">
+                            <button>连接到Secalot</button>
+                        </div>
+
+                        <div class="miyao sendDetail">
+                            <h3>选择你的钱包文件：</h3>
+                            <p>这不是推荐的访问钱包的方法。<br>
+                                在危险的网站上输入您的私钥。如果我们的网站遭到入侵或您不小心访问了其他网站，您的资金将被盗。请考虑：<br>
+                                <br>
+                                <span>
+                                &nbsp;&nbsp;<a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-metamask.html" target="_blank">
+                                MetaMask
+                            </a>
+                            </span>
+                            或
+                            <span><a href="https://myetherwallet.github.io/knowledge-base/hardware-wallets/hardware-wallet-recommendations.html" target="_blank">
+                                A硬件钱包</a></span>
+                            或
+                            <span><a href="https://myetherwallet.github.io/knowledge-base/offline/running-myetherwallet-locally.html" target="_blank">
+                                离线和本地运行MEW</a></span>
+                            <br>
+                                &nbsp;&nbsp;<span><a href="https://myetherwallet.github.io/knowledge-base/security/securing-your-ethereum.html" target="_blank">
+                                学习如何保护自己和你的资金</a><br><br>
+                            </span>
+                                如果必须，请仔细检查URL和SSL证书。它应该在你的URL栏中说<br>
+                                <span style="color:red">https://www.myetherwallet.com＆MYETHERWALLET INC。</span>
+                            </p>
+                            <br />
+                            <br />
+                            <label for="choice">选择钱包文件</label>
+                        </div>
+
+                        <div class="zuji sendDetail">
+                            <h3>粘贴你的助记符</h3>
+                            <p>这不是推荐的访问钱包的方法。<br>
+                                在危险的网站上输入您的私钥。如果我们的网站遭到入侵或您不小心访问了其他网站，您的资金将被盗。请考虑：<br>
+                                <br>
+                                <span>
+                                &nbsp;&nbsp;<a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-metamask.html">
+                                MetaMask
+                            </a>
+                            </span>
+                            或
+                            <span><a href="https://myetherwallet.github.io/knowledge-base/hardware-wallets/hardware-wallet-recommendations.html">
+                                A硬件钱包</a></span>
+                            或
+                            <span><a href="https://myetherwallet.github.io/knowledge-base/offline/running-myetherwallet-locally.html">
+                                离线和本地运行MEW</a></span>
+                            <br>
+                                &nbsp;&nbsp;<span><a href="https://myetherwallet.github.io/knowledge-base/security/securing-your-ethereum.html">
+                                学习如何保护自己和你的资金</a><br><br>
+                            </span>
+                                如果必须，请仔细检查URL和SSL证书。它应该在你的URL栏中说<br>
+                                <span style="color:red">https://www.myetherwallet.com＆MYETHERWALLET INC。</span>
+                            </p>
+                            <textarea></textarea>
+                            <div style="margin-top:0.2rem; color:#858585; font-size:0.18rem;">
+                                <p>密码（可选）：</p>
+                                <input type="password" style="border:0.01rem solid #bebcbe;">
+                            </div>
+                        </div>
+
+                        <div class="siyao sendDetail">
+                            <h3>选择导入账户的方式</h3>
+                            <input v-model="key1" type="checkbox" style="width:0.2rem;height:0.2rem;margin-right:0.2rem;">Private Key<br>
+                            <input v-model="key2" type="checkbox" style="width:0.2rem;height:0.2rem;margin-right:0.2rem;">Keystore / JSON File
+                            <textarea v-model="sendKey"></textarea>
+                            <button @click="sendClick($event)">解锁</button>
+                        </div>
+                    <!--------------------------------------------------->
+                </div>
+
+            <div class="queryMain sendMain" v-show="navList.q">
+                <div class="sendMain-title">
+                    <img src="img/sendMain-img.png">
+                    <p>How  would  you  like  to  access  your  wallet?</p>
+                </div>
+                <div class="sendMain-method">
+                    <div class="sendMain-img"></div>
+                    <div class="send-du">
+                    <div class="sendMain-method0 sendMain-method1" @click="enterDetailClick($event)">
+                        <p>仅查看地址</p>
+                    </div>
+                    <div class="sendMain-method0 sendMain-method2" @click="enterDetailClick($event)">
+                        <p>MetaMask / Mist</p>
+                    </div>
+                    <div class="sendMain-method0 sendMain-method3" @click="enterDetailClick($event)">
+                        <p>Ledger钱包</p>
+                    </div>
+                    <div class="sendMain-method0 sendMain-method4" @click="enterDetailClick($event)">
+                        <p>TREZOR</p>
+                    </div>
+                    <div class="sendMain-method0 sendMain-method5" @click="enterDetailClick($event)">
+                        <p>数字比特盒</p>
+                    </div>
+                    <div class="sendMain-method0 sendMain-method6" @click="enterDetailClick($event)">
+                        <p>Secalot</p>
+                    </div>
+                    <div class="sendMain-method0 sendMain-method7" @click="enterDetailClick($event)">
+                        <p>密钥库/ JSON文件</p>
+                    </div>
+                    <div class="sendMain-method0 sendMain-method8" @click="enterDetailClick($event)">
+                        <p>助记短语</p>
+                    </div>
+                    <div class="sendMain-method0 sendMain-method9" @click="enterDetailClick($event)">
+                        <p>私钥</p>
+                    </div>
+                    </div>
+                </div>
+
+                <!-------------------------------------------------->
+                    <div class="sendAddress sendDetail">
+                        <div class="sendAddress-p">
+                            <h3>你的地址</h3>
+                            <p>这是查看余额的推荐方式。<br />
+                                您只能通过此选项查看余额。请使用其他选项发送。</p>
+                        </div>
+                        <textarea></textarea>
+                    </div>
+
+                    <div class="MetaMask sendDetail">
+                        <h3>MetaMask / Mist</h3>
+                        <p>这是访问您的钱包的推荐方式。<br />
+                            MetaMask是一种浏览器扩展程序，可让您快速，安全，轻松地访问您的钱包。它更安全，因为您从不在网站上输入您的私钥。
+                            它可以保护您免受网络钓鱼和恶意网站的侵害。<br /><br />
+                            <span>
+                                <a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-metamask.html" target="_blank">&nbsp;&nbsp;
+                                如何转移到MetaMask
+                                </a><br />
+                                <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en" target="_blank">
+                                &nbsp;&nbsp;下载MetaMask for Chrome
+                                </a><br />
+                                <a href="https://metamask.io/" target="_blank">
+                                &nbsp;&nbsp;下载MetaMask for Other Browsers
+                                </a><br />
+                            </span>
+                        </p>
+                        <button>连接到MetaMask</button>
+                    </div>
+
+                    <div class="ledger sendDetail">
+                        <h3>Ledger硬件钱包</h3>
+                        <p>这是访问您的钱包的推荐方式。<br />
+                            硬件钱包是一种小型USB设备，可让您快速，安全，轻松地访问钱包。
+                            它更安全，因为您的私钥永远不会离开硬件钱包。它可以保护您免受网络钓鱼，恶意软件等的侵害。<br />
+                            <br />
+                            <span>
+                                <a href="https://ledger.zendesk.com/hc/en-us/articles/115005200009-How-to-use-MyEtherWallet-with-Ledger" target="_blank">
+                            &nbsp;&nbsp;        如何在您的Ledger硬件钱包中使用MyEtherWallet
+                                </a><br/>
+                                <a href="https://www.ledgerwallet.com/r/fa4b?path=/products/" target="_blank">
+                            &nbsp;&nbsp;        没有分类帐？今天来一个。
+                                </a><br />
+                            </span>
+                        </p>
+                        <button>连接到Ledger钱包</button>
+                    </div>
+
+                    <div class="TREZOR sendDetail">
+                        <h3>TREZOR五金钱包</h3>
+                        <p>这是访问您的钱包的推荐方式。<br />
+                            硬件钱包是一种小型USB设备，可让您快速，安全，轻松地访问钱包。
+                            它更安全，因为您的私钥永远不会离开硬件钱包。 它可以保护您免受网络钓鱼，恶意软件等的侵害。<br />
+                            <br />
+                            <span>
+                                <a href="https://blog.trezor.io/trezor-integration-with-myetherwallet-3e217a652e08#.n5fddxmdg" target="_blank">
+                            &nbsp;&nbsp;        如何在MyEtherWallet上使用TREZOR
+                                </a><br />
+                                <a href="https://trezor.io/?a=myetherwallet.com" target="_blank">
+                            &nbsp;&nbsp;        没有TREZOR？现在来一个。
+                                </a><br />
+                            </span>
+                        </p>
+                        <button>连接到TREZOR</button>
+                    </div>
+
+                    <div class="Bitbox sendDetail">
+                        <h3>数字Bitbox硬件钱包</h3>
+                        <p>这是访问您的钱包的推荐方式。<br>
+                            硬件钱包是一种小型USB设备，可让您快速，安全，轻松地访问钱包。
+                            它更安全，因为您的私钥永远不会离开硬件钱包。它可以保护您免受网络钓鱼，恶意软件等的侵害。<br>
+                            <br>
+                            <span>
+                                <a href="https://shiftcrypto.ch/ethereum" target="_blank">
+                            &nbsp;&nbsp;        如何在MyEtherWallet中使用Digital Bitbox
+                                </a><br>
+                                <a href="https://digitalbitbox.com/?ref=mew" target="_blank">
+                            &nbsp;&nbsp;        没有数字位盒？现在来一个。
+                                </a><br>
+                            </span>
+                            <input type="text">
+                            <button>连接到数字位盒</button>
+                        </p>
+                    </div>
+
+                    <div class="Secalot sendDetail">
+                        <h3>Secalot硬件钱包</h3>
+                        <p>这是访问您的钱包的推荐方式。<br>
+                            硬件钱包是一种小型USB设备，可让您快速，安全，轻松地访问钱包。
+                            它更安全，因为您的私钥永远不会离开硬件钱包。它可以保护您免受网络钓鱼，恶意软件等的侵害。<br>
+                            <br>
+                            <span>
+                                <a href="https://www.secalot.com/documentation/ethereum-wallet/" target="_blank">
+                            &nbsp;&nbsp;        如何在MyEtherWallet中使用Secalotbr
+                                </a><br>
+                                <a href="https://secalot.com/?ref=mew" target="_blank">
+                            &nbsp;&nbsp;        没有Secalot？现在来一个。
+                                </a><br>
+                            </span>
+                        </p>
+                        <input type="text">
+                        <button>连接到Secalot</button>
+                    </div>
+
+                    <div class="miyao sendDetail">
+                        <h3>选择你的钱包文件：</h3>
+                        <p>这不是推荐的访问钱包的方法。<br>
+                            在危险的网站上输入您的私钥。如果我们的网站遭到入侵或您不小心访问了其他网站，您的资金将被盗。请考虑：<br>
+                            <br>
+                            <span>
+                                &nbsp;&nbsp;<a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-metamask.html" target="_blank">
+                                MetaMask
+                            </a>
+                            </span>
+                            或
+                            <span><a href="https://myetherwallet.github.io/knowledge-base/hardware-wallets/hardware-wallet-recommendations.html" target="_blank">
+                                A硬件钱包</a></span>
+                            或
+                            <span><a href="https://myetherwallet.github.io/knowledge-base/offline/running-myetherwallet-locally.html" target="_blank">
+                                离线和本地运行MEW</a></span>
+                            <br>
+                                &nbsp;&nbsp;<span><a href="https://myetherwallet.github.io/knowledge-base/security/securing-your-ethereum.html" target="_blank">
+                                学习如何保护自己和你的资金</a><br><br>
+                            </span>
+                            如果必须，请仔细检查URL和SSL证书。它应该在你的URL栏中说<br>
+                            <span style="color:red">https://www.myetherwallet.com＆MYETHERWALLET INC。</span>
+                        </p>
+                        <br />
+                        <br />
+                        <label for="choice">选择钱包文件</label>
+                    </div>
+
+                    <div class="zuji sendDetail">
+                        <h3>粘贴你的助记符</h3>
+                        <p>这不是推荐的访问钱包的方法。<br>
+                            在危险的网站上输入您的私钥。如果我们的网站遭到入侵或您不小心访问了其他网站，您的资金将被盗。请考虑：<br>
+                            <br>
+                           <span>
+                                &nbsp;&nbsp;<a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-metamask.html" target="_blank">
+                                MetaMask
+                            </a>
+                            </span>
+                            或
+                            <span><a href="https://myetherwallet.github.io/knowledge-base/hardware-wallets/hardware-wallet-recommendations.html" target="_blank">
+                                A硬件钱包</a></span>
+                            或
+                            <span><a href="https://myetherwallet.github.io/knowledge-base/offline/running-myetherwallet-locally.html" target="_blank">
+                                离线和本地运行MEW</a></span>
+                            <br>
+                                &nbsp;&nbsp;<span><a href="https://myetherwallet.github.io/knowledge-base/security/securing-your-ethereum.html" target="_blank">
+                                学习如何保护自己和你的资金</a><br><br>
+                            </span>
+                            如果必须，请仔细检查URL和SSL证书。它应该在你的URL栏中说<br>
+                            <span style="color:red">https://www.myetherwallet.com＆MYETHERWALLET INC。</span>
+                        </p>
+                        <textarea></textarea>
+                        <div style="margin-top:0.2rem; color:#858585; font-size:0.18rem;">
+                            <p>密码（可选）：</p>
+                            <input type="password" style="border:0.01rem solid #bebcbe;">
+                        </div>
+                    </div>
+
+                    <div class="siyao sendDetail">
+                        <h3>选择导入账户的方式</h3>
+                        <input v-model="key3" type="checkbox" style="width:0.2rem;height:0.2rem;margin-right:0.2rem;">Private Key<br>
+                        <input v-model="key4" type="checkbox" style="width:0.2rem;height:0.2rem;margin-right:0.2rem;">Keystore / JSON File
+                        <textarea v-model="queryKey"></textarea>
+                        <button  @click="queryClick($event)">解锁</button>
+                    </div>
+                <!--------------------------------------------------->
+            </div>
+        </div>
+
+        <!---------------------------------------------------------------------------->
+        <div id="miyao-detail" v-show="miyaoDetail">
+            <div class="miyao-detail-main">
+                收款地址：<input type="text" v-model="address"><br /><br />
+                转账金额：<input type="text" v-model="sendPrice">
+                <select v-model="sendSelect">
+                    <option value="ETH">ETH</option>
+                    <option value="KYB">KTB</option>
+                </select>
+                <br />
+                <button @click="miyaoSend">发送交易</button>
+
+                <div class="userInfor">
+                    <p>账户地址：<span>{{userAddress}}</span></p>
+                    <p>账户余额：<span>{{surplus}}</span></p>
+                </div>
+            </div>
+        </div>
+        <!---------------------------------------------------->
+
+        <div id="query-detail" v-show="queryDetail">
+            <div id="table">
+                <div id="list-head">
+                    <div class="query-time"><p>交易时间</p></div>
+                    <div class="query-method"><p>交易方法</p></div>
+                    <div class="query-price"><p>交易金额</p></div>
+                    <div class="query-obj"><p>对象</p></div>
+                </div>
+                <div id="list-content">
+                    <div class="list-content-detail" v-for="item in list">
+                        <div class="query-time"><p>{{item.time}}</p></div>
+                        <div class="query-method"><p>{{item.method}}</p></div>
+                        <div class="query-price"><p>{{item.price}}</p></div>
+                        <div class="query-obj"><p>{{item.obj}}</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!----------------------------------------------------------------------------------->
+
+
+
+    <div id="footer"></div>
+</div>
+
+</body>
+
+<script src="try-vue.js"></script>
+</html>
