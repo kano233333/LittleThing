@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rand</title>
+
+    <style>
+        #box{
+            width:100px;
+            height:20px;
+            border:1px solid cornflowerblue;
+            position:fixed;
+            top:45%;
+            left:45%;
+            font-weight:bold;
+            letter-spacing: 2px;
+            text-align:center;
+        }
+
+        #box span{
+            width:20px;
+            height:20px;
+        }
+
+        .p1{
+            position:absolute;
+            left:20px;
+            animation:play1 2s forwards;
+            -webkit-animation:play1 2s forwards;
+        }
+
+        .p2{
+            position:absolute;
+            left:40px;
+            animation:play2 2s forwards;
+            -webkit-animation:play2 2s forwards;
+        }
+        .p3{
+            position:absolute;
+            left:60px;
+            animation:play3 2s forwards;
+            -webkit-animation:play3 2s forwards;
+        }
+        .p4{
+            position:absolute;
+            left:80px;
+            animation:play4 2s forwards;
+            -webkit-animation:play4 2s forwards;
+        }
+        @keyframes play1{
+            /*50%{*/
+            /**/
+            /*}*/
+            100%{
+                transform:translate(-10px,-100px) rotate(360deg);
+                font-size:40px;
+            }
+        }
+        @keyframes play2{
+            /*50%{*/
+            /**/
+            /*}*/
+            100%{
+                transform:translate(45px,-50px) rotate(360deg);
+                font-size:35px;
+            }
+        }
+        @keyframes play3{
+            /*50%{*/
+            /**/
+            /*}*/
+            100%{
+                transform:translate(-20px,39px) rotate(360deg);
+                font-size:50px;
+            }
+        }
+        @keyframes play4{
+            /*50%{*/
+            /**/
+            /*}*/
+            100%{
+                transform:translate(-80px,67px) rotate(360deg);
+                font-size:45px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="p1"><span>a</span></div>
+    <div class="p2"><span>b</span></div>
+    <div class="p3"><span>c</span></div>
+    <div class="p4"><span>d</span></div>
+</div>
+
+
+<script>
+    var target='kano';
+    var box=document.getElementById('box');
+    var span=box.getElementsByTagName('span');
+    var rand=Math.round(Math.random()*26+97);
+    var timer;
+
+    timer=setInterval(shift,50);
+
+    function shift(){
+        for(let i=0;i<span.length;i++){
+            if(span[i].innerText!==target[i]){
+                span[i].innerText=String.fromCharCode(rand);
+                rand=Math.round(Math.random()*25+97);
+            }
+        }
+        if(success()){
+            // animation();
+            clearInterval(timer);
+        }
+    }
+
+    function success(){
+        var p=1;
+        for(let i=0;i<target.length;i++){
+            if(target[i]!==span[i].innerText){
+                p=0;
+            }
+        }
+        return p;
+    }
+
+    function animation(){
+        span[0].style.animation='play1 2s forwards';
+    }
+</script>
+
+</body>
+</html>
